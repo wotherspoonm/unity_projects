@@ -1,15 +1,28 @@
 using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public sealed class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
     public GameObject enemyPrefab;
     public Transform playerTransform;
+    public float sleepTime = 1f;
 
+    public GameObject player;
     public List<GameObject> enemies = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+        LoadObjects();
+    }
+    public static GameManager Instance {
+        get { return instance; }
+    }
+
+    void LoadObjects()
     {
         Quaternion spawnRotation = new();
         Vector3 startPos1 = new Vector3(10, 1, 10);
@@ -20,6 +33,23 @@ public class GameManager : MonoBehaviour
         GameObject enemy2 = Instantiate(enemyPrefab, startPos2, spawnRotation);
         enemy2.GetComponent<EnemyMovement>().playerTransform = playerTransform;
         enemies.Add(enemy2);
+    }
+
+    public void EndGame() {
+        // Disable movement
+        EnableMovement(false);
+        Invoke("Restart", sleepTime);
+    }
+
+    private void Restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void EnableMovement(bool enable) {
+        player.GetComponent<PlayerMovement>().enabled = enable;
+        foreach (var enemy in enemies) {
+            enemy.GetComponent<EnemyMovement>().enabled = enable;
+        }
     }
 
     // Update is called once per frame
