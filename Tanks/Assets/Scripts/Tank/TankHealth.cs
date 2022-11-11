@@ -10,7 +10,6 @@ public class TankHealth : MonoBehaviour
     public Color m_ZeroHealthColor = Color.red;    
     public GameObject m_ExplosionPrefab;
     
-    /*
     private AudioSource m_ExplosionAudio;          
     private ParticleSystem m_ExplosionParticles;   
     private float m_CurrentHealth;  
@@ -21,7 +20,10 @@ public class TankHealth : MonoBehaviour
     {
         m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
         m_ExplosionAudio = m_ExplosionParticles.GetComponent<AudioSource>();
-
+        /*
+        It is more efficient to instantiate particles once and enable them and disable them through code rather than Destroying the object each time.
+        Destroying the object invokes Unity's garbage collector, which can tank performance (no pun intended).
+        */
         m_ExplosionParticles.gameObject.SetActive(false);
     }
 
@@ -33,22 +35,35 @@ public class TankHealth : MonoBehaviour
 
         SetHealthUI();
     }
-    */
 
     public void TakeDamage(float amount)
     {
         // Adjust the tank's current health, update the UI based on the new health and check whether or not the tank is dead.
+        m_CurrentHealth -= amount;
+        SetHealthUI();
+        if (m_CurrentHealth <= 0f && !m_Dead) {
+            OnDeath();
+        }
     }
 
 
     private void SetHealthUI()
     {
         // Adjust the value and colour of the slider.
+        m_Slider.value = m_CurrentHealth;
+        m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_CurrentHealth / m_StartingHealth);
     }
 
 
     private void OnDeath()
     {
         // Play the effects for the death of the tank and deactivate it.
+        m_Dead = true;
+
+        m_ExplosionParticles.transform.position = transform.position; // Move the particles to where the tank is
+        m_ExplosionParticles.gameObject.SetActive(true);
+        m_ExplosionParticles.Play();
+        m_ExplosionAudio.Play();
+        gameObject.SetActive(false);
     }
 }
