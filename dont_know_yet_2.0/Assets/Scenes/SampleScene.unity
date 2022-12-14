@@ -154,8 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sleepTime: 1
   player: {fileID: 1791109779}
-  enemyManager: {fileID: 1580168874}
-  enemies: []
+  spawnManager: {fileID: 1580168874}
 --- !u!4 &63129831
 Transform:
   m_ObjectHideFlags: 0
@@ -183,7 +182,7 @@ GameObject:
   - component: {fileID: 262261153}
   - component: {fileID: 262261155}
   - component: {fileID: 262261154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnRegion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +197,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262261152}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -280,7 +279,7 @@ GameObject:
   - component: {fileID: 477302034}
   - component: {fileID: 477302033}
   - component: {fileID: 477302032}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +554,7 @@ GameObject:
   - component: {fileID: 1119328098}
   - component: {fileID: 1119328097}
   - component: {fileID: 1119328096}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,7 +651,7 @@ GameObject:
   - component: {fileID: 1138939895}
   - component: {fileID: 1138939894}
   - component: {fileID: 1138939893}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +748,7 @@ GameObject:
   - component: {fileID: 1301180122}
   - component: {fileID: 1301180121}
   - component: {fileID: 1301180120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -845,7 +844,7 @@ GameObject:
   - component: {fileID: 1580168875}
   - component: {fileID: 1580168874}
   m_Layer: 0
-  m_Name: Enemy Manager
+  m_Name: Spawn Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -865,8 +864,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRegion: {fileID: 262261153}
   enemyPrefab: {fileID: 5146303635357228412, guid: 63cae132ab7e86848a96ff15ecc09e52, type: 3}
+  coinPrefab: {fileID: 2768145642400051388, guid: 301dfb44ac40e974383fe16331493794, type: 3}
   playerTransform: {fileID: 1791109785}
-  minDistance: 3
+  minDistance: 10
+  enemies: []
 --- !u!4 &1580168875
 Transform:
   m_ObjectHideFlags: 0
@@ -894,9 +895,9 @@ GameObject:
   - component: {fileID: 1749384011}
   - component: {fileID: 1749384010}
   - component: {fileID: 1749384009}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arena
-  m_TagString: Untagged
+  m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1000,7 +1001,7 @@ GameObject:
   - component: {fileID: 1791109781}
   - component: {fileID: 1791109780}
   - component: {fileID: 1791109786}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

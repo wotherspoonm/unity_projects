@@ -6,10 +6,12 @@ using UnityEngine;
 public sealed class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    public float sleepTime = 1f;
 
+    public float sleepTime = 1f;
     public GameObject player;
-    public EnemyManager enemyManager;
+    public SpawnManager spawnManager;
+
+    private int score = 0;
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -21,8 +23,17 @@ public sealed class GameManager : MonoBehaviour
 
     void Start()
     {
-        enemyManager.SpawnEnemy();
-        enemyManager.SpawnEnemy();
+        spawnManager.SpawnEnemy();
+        spawnManager.SpawnEnemy();
+        spawnManager.SpawnCoin();
+    }
+
+    public void CollectCoin() {
+        score++;
+        spawnManager.SpawnCoin();
+        if (score %  5 == 0) {
+            spawnManager.SpawnEnemy();
+        }
     }
 
     public void EndGame() {
@@ -37,6 +48,6 @@ public sealed class GameManager : MonoBehaviour
 
     private void EnableMovement(bool enable) {
         player.GetComponent<PlayerMovement>().enabled = enable;
-        enemyManager.EnableEnemyMovement(enable);
+        spawnManager.EnableEnemyMovement(enable);
     }
 }

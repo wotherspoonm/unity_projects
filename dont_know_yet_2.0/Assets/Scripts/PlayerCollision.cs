@@ -9,4 +9,11 @@ public class PlayerCollision : MonoBehaviour
             GameManager.Instance.EndGame();
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Coin") {
+            GameManager.Instance.CollectCoin();
+            Destroy(other.gameObject);
+        }
+    }
 }
