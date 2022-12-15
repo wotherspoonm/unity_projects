@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
-
     public float sleepTime = 1f;
     public GameObject player;
     public SpawnManager spawnManager;
@@ -18,14 +16,6 @@ public sealed class GameManager : MonoBehaviour
     public float speedIncreaseMultiplier = 1.2f;
 
     private int score = 0;
-    private void Awake() {
-        if (instance == null) {
-            instance = this;
-        }
-    }
-    public static GameManager Instance {
-        get { return instance; }
-    }
 
     void Start()
     {
@@ -44,7 +34,7 @@ public sealed class GameManager : MonoBehaviour
     public void EndGame() {
         // Disable movement
         EnableMovement(false);
-        Invoke("Restart", sleepTime);
+        Invoke("GameOver", sleepTime);
     }
 
     private void CheckDifficultyIncrease() {
@@ -60,8 +50,8 @@ public sealed class GameManager : MonoBehaviour
         }
     }
 
-    private void Restart() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    private void GameOver() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void EnableMovement(bool enable) {

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    public GameManager gameManager;
     void OnCollisionEnter(Collision collision) {
         if (collision.collider.tag == "Enemy") {
-            GameManager.Instance.EndGame();
+            gameManager.EndGame();
         }
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Coin") {
-            GameManager.Instance.CollectCoin();
+            gameManager.CollectCoin();
             Destroy(other.gameObject);
         }
     }
