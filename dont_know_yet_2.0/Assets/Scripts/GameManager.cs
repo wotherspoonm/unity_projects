@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public Text updateText;
     public int speedIncreaseInterval = 5;
     public int newEnemyInterval = 20;
-    public float speedIncreaseMultiplier = 1.2f;
 
     private int score = 0;
 
@@ -40,12 +39,11 @@ public class GameManager : MonoBehaviour
     private void CheckDifficultyIncrease() {
         if (score % newEnemyInterval == 0) {
             spawnManager.SpawnEnemy();
+            spawnManager.ResetEnemySpeed();
             StartCoroutine(UpdateMessage("New Enemy!"));
         }
         else if (score % speedIncreaseInterval == 0) {
-            for (int i = 0; i < spawnManager.enemies.Count; i++) {
-                spawnManager.enemies[i].GetComponent<EnemyMovement>().force *= speedIncreaseMultiplier;
-            }
+            spawnManager.IncreaseEnemySpeed();
             StartCoroutine(UpdateMessage("Speed Up!"));
         }
     }

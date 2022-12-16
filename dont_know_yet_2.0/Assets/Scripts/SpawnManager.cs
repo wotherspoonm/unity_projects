@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject coinPrefab;
     public Transform playerTransform;
     public float minDistance = 3f;
+    public float speedIncreaseMultiplier = 1.2f;
     public List<GameObject> enemies = new List<GameObject>();
 
     private Vector3 boundsMin;
@@ -31,7 +32,7 @@ public class SpawnManager : MonoBehaviour
 
     private GameObject SpawnObject(GameObject objectToSpawn) {
         Quaternion spawnRotation = new();
-        Vector3 spawnPoint = new Vector3(Random.Range(boundsMin.x, boundsMax.x), 1, Random.Range(boundsMin.z, boundsMax.z));
+        Vector3 spawnPoint = new Vector3(Random.Range(boundsMin.x, boundsMax.x), spawnRegion.center.y + 0.1f, Random.Range(boundsMin.z, boundsMax.z));
         while (Mathf.Sqrt(Mathf.Pow(spawnPoint.x - playerTransform.position.x, 2) + Mathf.Pow(spawnPoint.z - playerTransform.position.z, 2)) < minDistance) {
             spawnPoint = new Vector3(Random.Range(boundsMin.x, boundsMax.x), spawnRegion.center.y + 0.1f, Random.Range(boundsMin.z, boundsMax.z));
         }
@@ -41,6 +42,18 @@ public class SpawnManager : MonoBehaviour
     public void EnableEnemyMovement(bool enable) {
         foreach (var enemy in enemies) {
             enemy.GetComponent<EnemyMovement>().enabled = enable;
+        }
+    }
+
+    public void IncreaseEnemySpeed() {
+        for (int i = 0; i < enemies.Count; i++) {
+            enemies[i].GetComponent<EnemyMovement>().force *= speedIncreaseMultiplier;
+        }
+    }
+
+    public void ResetEnemySpeed() {
+        foreach (var enemy in enemies) {
+            enemy.GetComponent<EnemyMovement>().ResetSpeed();
         }
     }
 }
