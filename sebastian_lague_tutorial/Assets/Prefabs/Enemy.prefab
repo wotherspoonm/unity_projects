@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 5
+  deathEffect: {fileID: 2085381615878688089, guid: 025578a765996fc4b94d42021929291e, type: 3}
 --- !u!195 &4954131546113179562
 NavMeshAgent:
   m_ObjectHideFlags: 0
