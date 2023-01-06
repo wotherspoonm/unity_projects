@@ -31,9 +31,10 @@ public class Enemy : LivingEntity
     void Awake() {
         pathfinder = GetComponent<NavMeshAgent>();
 
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        if (target != null) {
+        if (GameObject.FindGameObjectWithTag("Player") != null) {
             hasTarget = true;
+
+            target = GameObject.FindGameObjectWithTag("Player").transform;
             targetEntity = target.GetComponent<LivingEntity>();
 
             myCollisionRadius = GetComponent<CapsuleCollider>().radius;
@@ -59,7 +60,7 @@ public class Enemy : LivingEntity
         }
         startingHealth = enemyHealth;
 
-        skinMaterial = GetComponent<Renderer>().material;
+        skinMaterial = GetComponent<Renderer>().sharedMaterial;
         skinMaterial.color = skinColour;
         originalColour = skinMaterial.color;
     }
