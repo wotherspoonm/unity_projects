@@ -3915,14 +3915,14 @@ MonoBehaviour:
     timeBetweenSpawns: 1
     moveSpeed: 3
     hitsToKillPlayer: 5
-    enemyHealth: 10
+    enemyHealth: 5
     skinColor: {r: 0.105922684, g: 0.033018887, b: 1, a: 0}
   - infinite: 0
     enemyCount: 30
-    timeBetweenSpawns: 0.75
+    timeBetweenSpawns: 1
     moveSpeed: 4
     hitsToKillPlayer: 4
-    enemyHealth: 8
+    enemyHealth: 6
     skinColor: {r: 1, g: 0, b: 0, a: 0}
   - infinite: 0
     enemyCount: 10
@@ -9137,7 +9137,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9145,14 +9144,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -15383,6 +15374,98 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659755428}
   m_CullTransparentMesh: 1
+--- !u!1 &1671252884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1671252886}
+  - component: {fileID: 1671252885}
+  - component: {fileID: 1671252887}
+  - component: {fileID: 1671252888}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1671252885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671252884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be34c08acc39cc446972f969c379a09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1671252886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671252884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2057341244}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1671252887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671252884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001028d7347c9624993cca120bcc64c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTheme: {fileID: 8300000, guid: 98dc08c1b0aadec49bf67af245eddabf, type: 3}
+  menuTheme: {fileID: 8300000, guid: 6848d44bbd9811e4c8f0ade66aff610c, type: 3}
+--- !u!114 &1671252888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671252884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2852a3419e7cc0443bc3599f7fa2e3df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundGroups:
+  - groupID: Impact
+    group:
+    - {fileID: 8300000, guid: c74b2d1d20374d34480589497a9c9958, type: 3}
+    - {fileID: 8300000, guid: 4c478171a84e962479b5378a00d84d7c, type: 3}
+    - {fileID: 8300000, guid: 90b5d0dfb9620ca4cbb148e8095dae49, type: 3}
+  - groupID: Enemy Death
+    group:
+    - {fileID: 8300000, guid: 075b026bda1d1f7429a3d50b738b2949, type: 3}
+    - {fileID: 8300000, guid: ae126e8a560463a489e50a561e0ebd38, type: 3}
+  - groupID: Enemy Attack
+    group:
+    - {fileID: 8300000, guid: ef91b7df60eb66e429c8d215dfba9907, type: 3}
+  - groupID: Level Complete
+    group:
+    - {fileID: 8300000, guid: 6987affa0de456244b3a47a50b041a94, type: 3}
+  - groupID: Player Death
+    group:
+    - {fileID: 8300000, guid: b97692139e43d2141bcc4b9af638923c, type: 3}
 --- !u!1 &1675403670
 GameObject:
   m_ObjectHideFlags: 0
@@ -20034,6 +20117,46 @@ Material:
     - _Color: {r: 0.56226414, g: 0.28601468, b: 0.124741904, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
+--- !u!1 &2057341243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057341244}
+  - component: {fileID: 2057341245}
+  m_Layer: 0
+  m_Name: Audio Listener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2057341244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057341243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1671252886}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &2057341245
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057341243}
+  m_Enabled: 1
 --- !u!21 &2064515351
 Material:
   serializedVersion: 8
