@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public float sleepTime = 1f;
-    public GameObject player;
+    public Player player;
     public SpawnManager spawnManager;
     public Text scoreText;
     public Text updateText;
@@ -16,11 +16,25 @@ public class GameManager : MonoBehaviour
 
     private int score = 0;
 
+    void Awake() {
+        player = FindObjectOfType<Player>();
+        player.OnDeath += OnDeath;
+        player.OnCollectCoin += OnCollectCoin;
+    }
+
     void Start()
     {
         spawnManager.SpawnEnemy();
         spawnManager.SpawnEnemy();
         spawnManager.SpawnCoin();
+    }
+
+    void OnDeath() {
+        EndGame();
+    }
+
+    void OnCollectCoin() {
+        CollectCoin();
     }
 
     public void CollectCoin() {
@@ -53,7 +67,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void EnableMovement(bool enable) {
-        player.GetComponent<PlayerMovement>().enabled = enable;
+        player.enabled = enable;
         spawnManager.EnableEnemyMovement(enable);
     }
 
