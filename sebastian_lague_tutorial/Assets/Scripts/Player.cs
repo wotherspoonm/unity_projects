@@ -8,6 +8,7 @@ public class Player : LivingEntity
 {
     public float moveSpeed = 5;
     public float minCrosshairDistance = 1f;
+    float thresholdDeathHeight = -10f;
 
     public Crosshairs crosshairs;
 
@@ -63,6 +64,10 @@ public class Player : LivingEntity
         }
         if (Input.GetKeyDown(KeyCode.R)) {
             gunController.Reload();
+        }
+
+        if (transform.position.y < thresholdDeathHeight) {
+            TakeDamage(health);
         }
     }
 

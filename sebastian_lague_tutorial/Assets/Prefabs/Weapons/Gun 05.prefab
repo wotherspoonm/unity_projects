@@ -648,10 +648,10 @@ MonoBehaviour:
   projectileSpawn:
   - {fileID: 8420820708799984010}
   projectile: {fileID: 7929033106424163642, guid: ee17f362404e06c438e8e61dd126a4c8, type: 3}
-  msBetweenShots: 10
+  msBetweenShots: 100
   muzzleVelocity: 50
   burstCount: 3
-  projectilesPerMag: 20
+  projectilesPerMag: 100
   reloadTime: 0.3
   shell: {fileID: 7299203883547260906, guid: be611f1abdb3a714f84e914a30bdf737, type: 3}
   shellEjection: {fileID: 4707431617499715309}
