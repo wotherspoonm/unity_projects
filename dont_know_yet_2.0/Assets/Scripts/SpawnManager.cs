@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnEnemy() {
         GameObject newEnemy = SpawnObject(enemyPrefab);
-        newEnemy.GetComponent<EnemyMovement>().playerTransform = playerTransform;
+        newEnemy.GetComponent<Enemy>().playerTransform = playerTransform;
         enemies.Add(newEnemy);
     }
 
@@ -41,19 +41,19 @@ public class SpawnManager : MonoBehaviour
     }
     public void EnableEnemyMovement(bool enable) {
         foreach (var enemy in enemies) {
-            enemy.GetComponent<EnemyMovement>().enabled = enable;
+            enemy.GetComponent<Enemy>().enabled = enable;
         }
     }
 
     public void IncreaseEnemySpeed() {
         for (int i = 0; i < enemies.Count; i++) {
-            enemies[i].GetComponent<EnemyMovement>().force *= speedIncreaseMultiplier;
+            enemies[i].GetComponent<Enemy>().force *= speedIncreaseMultiplier;
         }
     }
 
     public void ResetEnemySpeed() {
         foreach (var enemy in enemies) {
-            enemy.GetComponent<EnemyMovement>().ResetSpeed();
+            enemy.GetComponent<Enemy>().ResetSpeed();
         }
     }
 }

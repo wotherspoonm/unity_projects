@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5bfe97861445a4eb6dc32572045488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 1
   playerTransform: {fileID: 0}
   playerDirection: {x: 0, y: 0, z: 0}
   rb: {fileID: 1551909456266174293}

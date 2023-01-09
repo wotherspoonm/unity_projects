@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class Enemy : LivingEntity
 {
     public Transform playerTransform;
     public Vector3 playerDirection;
     public Rigidbody rb;
     public float startForce = 20f;
     public float force;
+    public float damage = 1f;
 
     private void Awake() {
         ResetSpeed();
