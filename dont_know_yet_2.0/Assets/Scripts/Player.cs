@@ -16,7 +16,6 @@ public class Player : LivingEntity
     Vector3 moveDirection;
     bool isInvincible;
 
-
     public event System.Action OnCollectCoin;
 
     // Update is called once per frame

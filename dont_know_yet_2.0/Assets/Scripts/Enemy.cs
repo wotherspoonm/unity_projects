@@ -9,7 +9,7 @@ public class Enemy : LivingEntity
     public Rigidbody rb;
     public float startForce = 20f;
     public float force;
-    public float damage = 1f;
+    public int damage = 1;
 
     private void Awake() {
         ResetSpeed();

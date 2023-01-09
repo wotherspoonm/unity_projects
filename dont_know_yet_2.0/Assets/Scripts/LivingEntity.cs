@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public float startingHealth;
-    public float health { get; protected set; }
+    public int startingHealth;
+    public int health { get; protected set; }
     protected bool dead;
 
     public event System.Action OnDeath;
 
-    protected virtual void Start() {
+    void Awake() {
         health = startingHealth;
     }
 
-    public virtual void TakeDamage(float damage) {
+    protected virtual void Start() {
+
+    }
+
+    public virtual void TakeDamage(int damage) {
         health -= damage;
         if (health <= 0 && !dead) {
             Die();
