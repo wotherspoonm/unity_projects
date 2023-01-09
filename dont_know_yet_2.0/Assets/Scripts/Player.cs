@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     public Rigidbody rb;
     public float force = 500f;
+    public LayerMask enemyMask;
+    public LayerMask coinMask;
 
     private Vector3 moveInput;
     private Vector3 moveForce;
@@ -26,13 +28,17 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        if (collision.collider.tag == "Enemy") {
+        int collisionLayer = collision.gameObject.layer;
+        int collisionLayerMask = 1 << collisionLayer;
+        if ((enemyMask.value & collisionLayerMask) != 0) {
             OnDeath();
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Coin") {
+        int collisionLayer = other.gameObject.layer;
+        int collisionLayerMask = 1 << collisionLayer;
+        if ((coinMask.value & collisionLayerMask) != 0) {
             OnCollectCoin();
             Destroy(other.gameObject);
         }
