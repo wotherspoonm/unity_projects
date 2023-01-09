@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
     public void EndGame() {
         // Disable movement
         EnableMovement(false);
-        Invoke("GameOver", sleepTime);
     }
 
     private void CheckDifficultyIncrease() {
@@ -60,10 +59,6 @@ public class GameManager : MonoBehaviour
             spawnManager.IncreaseEnemySpeed();
             StartCoroutine(UpdateMessage("Speed Up!"));
         }
-    }
-
-    private void GameOver() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void EnableMovement(bool enable) {
