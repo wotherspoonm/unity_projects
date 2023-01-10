@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -520, y: -229}
+  m_AnchoredPosition: {x: -498.2, y: -229}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &63129829
@@ -1653,6 +1653,11 @@ MonoBehaviour:
   fadePlane: {fileID: 1159652255}
   heartPrefab: {fileID: 5092125838935574311, guid: 4616bc191af12b3499a07918971eafef, type: 3}
   health: {fileID: 14110184}
+  heartJumpTime: 0.5
+  gapWidth: 5
+  heartJumpHeight: 20
+  bounceDelay: 5
+  delayBetweenEachHeartJump: 0.2
 --- !u!1 &1749384008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,6 +1969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  dead: 0
   rb: {fileID: 1791109780}
   force: 50
   enemyMask:

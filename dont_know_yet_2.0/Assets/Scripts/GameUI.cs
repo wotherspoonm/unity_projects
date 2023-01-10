@@ -9,9 +9,15 @@ public class GameUI : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject scoreUI;
     public Image fadePlane;
+
+    [Header("Health")]
     public RectTransform heartPrefab;
     public RectTransform health;
+    public float heartJumpTime = 2f;
     public float gapWidth = 5f;
+    public float heartJumpHeight = 5f;
+    public float bounceDelay = 5f;
+    public float delayBetweenEachHeartJump = 0.2f;
 
     Player player;
     RectTransform[] healthHearts;
@@ -29,6 +35,7 @@ public class GameUI : MonoBehaviour
         }
 
         playerHealthLastFrame = player.startingHealth;
+        StartCoroutine(HeartBounces());
     }
 
     void Update() {
@@ -52,6 +59,30 @@ public class GameUI : MonoBehaviour
         while (percent < 1) {
             percent += Time.deltaTime * speed;
             fadePlane.color = Color.Lerp(from, to, percent);
+            yield return null;
+        }
+    }
+
+    IEnumerator HeartBounces() {
+        while (!player.dead) {
+            for (int i = 0; i < player.health; i++) {
+                StartCoroutine(HeartBounce(i));
+                yield return new WaitForSeconds(delayBetweenEachHeartJump);
+            }
+            yield return new WaitForSeconds(bounceDelay);
+        }
+    }
+
+    IEnumerator HeartBounce(int heartIndex) {
+        float jumpSpeed = 1 / heartJumpTime;
+        float interpolation;
+        Vector3 originalPosition = healthHearts[heartIndex].position;
+        float percent = 0;
+
+        while (percent < 1 && healthHearts[heartIndex] != null) {
+            percent += Time.deltaTime * jumpSpeed;
+            interpolation = 1 - Mathf.Abs(2 * percent - 1);
+            healthHearts[heartIndex].position = Vector3.Lerp(originalPosition, originalPosition + Vector3.up * heartJumpHeight, interpolation);
             yield return null;
         }
     }

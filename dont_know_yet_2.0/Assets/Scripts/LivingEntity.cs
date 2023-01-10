@@ -6,7 +6,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
 {
     public int startingHealth;
     public int health { get; protected set; }
-    protected bool dead;
+    public bool dead;
 
     public event System.Action OnDeath;
 
