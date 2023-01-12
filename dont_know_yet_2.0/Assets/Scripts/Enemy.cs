@@ -7,22 +7,23 @@ public class Enemy : LivingEntity
     public Transform playerTransform;
     public Vector3 playerDirection;
     public Rigidbody rb;
-    public float startForce = 20f;
-    public float force;
     public int damage = 1;
+    public float speedIncreaseMultiplier = 1.2f;
+
+    [SerializeField]
+    protected float startSpeed = 20f;
+    [SerializeField]
+    protected float speed;
 
     private void Awake() {
         ResetSpeed();
     }
 
     public void ResetSpeed() {
-        force = startForce;
+        speed = startSpeed;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        playerDirection = (playerTransform.position - transform.position).normalized;
-        rb.AddForce(playerDirection * force * Time.deltaTime, ForceMode.VelocityChange);
+    public void IncreaseSpeed() {
+        speed *= speedIncreaseMultiplier;
     }
 }

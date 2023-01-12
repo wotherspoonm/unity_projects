@@ -46,7 +46,6 @@ public class GameUI : MonoBehaviour
     }
 
     void OnGameOver() {
-        Cursor.visible = true;
         StartCoroutine(Fade(Color.clear, new Color(0, 0, 0, 0.8f), 1));
         scoreUI.gameObject.SetActive(false);
         gameOverUI.SetActive(true);

@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        spawnManager.SpawnEnemy();
-        spawnManager.SpawnEnemy();
+        spawnManager.SpawnChaser();
+        spawnManager.SpawnChaser();
         spawnManager.SpawnCoin();
     }
 
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckDifficultyIncrease() {
         if (score % newEnemyInterval == 0) {
-            spawnManager.SpawnEnemy();
+            spawnManager.SpawnChaser();
             spawnManager.ResetEnemySpeed();
             StartCoroutine(UpdateMessage("New Enemy!"));
         }

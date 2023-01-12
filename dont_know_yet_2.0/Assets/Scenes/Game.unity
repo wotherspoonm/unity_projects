@@ -1004,7 +1004,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 25.06
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1512,11 +1512,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRegion: {fileID: 262261153}
-  enemyPrefab: {fileID: 5146303635357228412, guid: 63cae132ab7e86848a96ff15ecc09e52, type: 3}
+  chaserPrefab: {fileID: 5146303635357228412, guid: 63cae132ab7e86848a96ff15ecc09e52, type: 3}
   coinPrefab: {fileID: 2768145642400051388, guid: 301dfb44ac40e974383fe16331493794, type: 3}
   playerTransform: {fileID: 1791109785}
   minDistance: 10
-  speedIncreaseMultiplier: 1.2
   enemies: []
 --- !u!4 &1580168875
 Transform:

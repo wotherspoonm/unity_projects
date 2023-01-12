@@ -5,11 +5,10 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public BoxCollider spawnRegion;
-    public GameObject enemyPrefab;
+    public GameObject chaserPrefab;
     public GameObject coinPrefab;
     public Transform playerTransform;
     public float minDistance = 3f;
-    public float speedIncreaseMultiplier = 1.2f;
     public List<GameObject> enemies = new List<GameObject>();
 
     private Vector3 boundsMin;
@@ -20,8 +19,11 @@ public class SpawnManager : MonoBehaviour
         boundsMax = spawnRegion.bounds.max;
     }
 
-    public void SpawnEnemy() {
-        GameObject newEnemy = SpawnObject(enemyPrefab);
+    public void SpawnChaser() {
+        SpawnEnemy(chaserPrefab);
+    }
+    public void SpawnEnemy(GameObject enemyToSpawn) {
+        GameObject newEnemy = SpawnObject(enemyToSpawn);
         newEnemy.GetComponent<Enemy>().playerTransform = playerTransform;
         enemies.Add(newEnemy);
     }
@@ -47,7 +49,7 @@ public class SpawnManager : MonoBehaviour
 
     public void IncreaseEnemySpeed() {
         for (int i = 0; i < enemies.Count; i++) {
-            enemies[i].GetComponent<Enemy>().force *= speedIncreaseMultiplier;
+            enemies[i].GetComponent<Enemy>().IncreaseSpeed();
         }
     }
 
