@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        spawnManager.SpawnChaser();
-        spawnManager.SpawnChaser();
+        spawnManager.SpawnTank();
         spawnManager.SpawnCoin();
     }
 

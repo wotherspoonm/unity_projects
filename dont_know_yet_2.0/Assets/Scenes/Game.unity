@@ -1513,9 +1513,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRegion: {fileID: 262261153}
   chaserPrefab: {fileID: 5146303635357228412, guid: 63cae132ab7e86848a96ff15ecc09e52, type: 3}
+  tankPrefab: {fileID: 6232732306268790972, guid: 9828a04a0e3dc7b47808f0140fc23629, type: 3}
   coinPrefab: {fileID: 2768145642400051388, guid: 301dfb44ac40e974383fe16331493794, type: 3}
   playerTransform: {fileID: 1791109785}
-  minDistance: 10
+  entityMask:
+    serializedVersion: 2
+    m_Bits: 832
+  minDistance: 5
   enemies: []
 --- !u!4 &1580168875
 Transform:

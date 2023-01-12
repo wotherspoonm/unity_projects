@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : LivingEntity
+public class Enemy : MonoBehaviour
 {
     public Transform playerTransform;
     public Vector3 playerDirection;
