@@ -10,8 +10,13 @@ public class Tank : Enemy
     public Transform tankBottom;
     public float msBetweenShots = 100;
     public float muzzleVelocity = 20;
+    public float startDelayTime = 3;
 
     float nextShotTime;
+
+    void Awake() {
+        nextShotTime = Time.time + startDelayTime;
+    }
 
     void Update() {
         if (Time.time > nextShotTime) {

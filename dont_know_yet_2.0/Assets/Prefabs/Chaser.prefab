@@ -127,12 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5687169c350a8394381075c1e57b9549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 0
-  dead: 0
   playerTransform: {fileID: 0}
   playerDirection: {x: 0, y: 0, z: 0}
   rb: {fileID: 1551909456266174293}
   damage: 1
   speedIncreaseMultiplier: 1.2
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   startSpeed: 20
   speed: 0

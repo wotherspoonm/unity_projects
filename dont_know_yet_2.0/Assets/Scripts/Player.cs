@@ -29,12 +29,10 @@ public class Player : LivingEntity
         rb.AddForce(moveDirection * force * Time.deltaTime, ForceMode.VelocityChange);
     }
 
-    void OnCollisionEnter(Collision collision) {
-        int collisionLayer = collision.gameObject.layer;
-        int collisionLayerMask = 1 << collisionLayer;
-        if ((enemyMask.value & collisionLayerMask) != 0 && !isInvincible && !dead) {
+    public override void TakeDamage(int damage) {
+        if (!isInvincible && !dead) {
             StartCoroutine(AnimateInvincibility());
-            base.TakeDamage(collision.gameObject.GetComponent<Enemy>().damage);
+            base.TakeDamage(damage);
         }
     }
 

@@ -25,6 +25,11 @@ public class Projectile : Enemy {
         transform.Translate(Vector3.forward * moveDistance);
     }
 
+    public override void OnCollisionEnter(Collision collision) {
+        base.OnCollisionEnter(collision);
+        Destroy(gameObject);
+    }
+
     void CheckCollisions(float moveDistance) {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;

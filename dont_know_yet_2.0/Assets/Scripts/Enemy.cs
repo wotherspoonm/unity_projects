@@ -14,9 +14,11 @@ public class Enemy : MonoBehaviour
     protected float startSpeed = 20f;
     [SerializeField]
     protected float speed;
+    protected LayerMask playerMask;
 
     private void Awake() {
         ResetSpeed();
+        playerMask = LayerMask.GetMask("Player");
     }
 
     public void ResetSpeed() {
@@ -25,5 +27,16 @@ public class Enemy : MonoBehaviour
 
     public void IncreaseSpeed() {
         speed *= speedIncreaseMultiplier;
+    }
+
+    public virtual void OnCollisionEnter(Collision collision) {
+        int collisionLayer = collision.gameObject.layer;
+        int collisionLayerMask = 1 << collisionLayer;
+        if ((playerMask.value & collisionLayerMask) != 0) {
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (player != null) {
+                player.TakeDamage(damage);
+            }
+        }
     }
 }

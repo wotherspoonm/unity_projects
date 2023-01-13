@@ -307,7 +307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4792711920859300349}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0130001, y: 0.15199997, z: 1.005}
+  m_LocalPosition: {x: -0.0130001, y: 0.169, z: 1.074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -361,8 +361,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.3, z: 1.7}
-  m_Center: {x: 0, y: 0.15, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2453625774998269317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +388,7 @@ MonoBehaviour:
   tankBottom: {fileID: 8142010067370893213}
   msBetweenShots: 1000
   muzzleVelocity: 20
+  startDelayTime: 3
 --- !u!54 &4642058890321777796
 Rigidbody:
   m_ObjectHideFlags: 0
