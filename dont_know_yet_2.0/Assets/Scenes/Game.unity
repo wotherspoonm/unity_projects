@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: 262261153}
   - component: {fileID: 262261155}
   - component: {fileID: 262261154}
+  - component: {fileID: 262261157}
   m_Layer: 7
   m_Name: SpawnRegion
   m_TagString: Untagged
@@ -561,6 +562,23 @@ Transform:
   m_Father: {fileID: 1749384012}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262261157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262261152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d965ec1043c64ae47940f29de01f2fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRegion: {fileID: 262261153}
+  minDistance: 5
+  entityMask:
+    serializedVersion: 2
+    m_Bits: 832
 --- !u!1 &294761771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,16 +1529,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed221cafe8e16604ca676de211cf6c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRegion: {fileID: 262261153}
   chaserPrefab: {fileID: 5146303635357228412, guid: 63cae132ab7e86848a96ff15ecc09e52, type: 3}
   tankPrefab: {fileID: 6232732306268790972, guid: 9828a04a0e3dc7b47808f0140fc23629, type: 3}
   coinPrefab: {fileID: 2768145642400051388, guid: 301dfb44ac40e974383fe16331493794, type: 3}
   playerTransform: {fileID: 1791109785}
-  entityMask:
-    serializedVersion: 2
-    m_Bits: 832
-  minDistance: 5
   enemies: []
+  spawnRegion: {fileID: 262261157}
 --- !u!4 &1580168875
 Transform:
   m_ObjectHideFlags: 0

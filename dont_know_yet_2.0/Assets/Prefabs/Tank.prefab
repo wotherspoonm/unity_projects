@@ -389,6 +389,7 @@ MonoBehaviour:
   msBetweenShots: 1000
   muzzleVelocity: 20
   startDelayTime: 3
+  spawnRegion: {fileID: 0}
 --- !u!54 &4642058890321777796
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -403,7 +404,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &7673211947376541060
 GameObject:

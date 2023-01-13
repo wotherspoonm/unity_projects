@@ -4,34 +4,26 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public BoxCollider spawnRegion;
     public GameObject chaserPrefab;
     public GameObject tankPrefab;
     public GameObject coinPrefab;
     public Transform playerTransform;
-    public LayerMask entityMask;
-    public float minDistance = 3f;
     public List<GameObject> enemies = new List<GameObject>();
-
-    private Vector3 boundsMin;
-    private Vector3 boundsMax;
-
-    void Awake() {
-        boundsMin = spawnRegion.bounds.min;
-        boundsMax = spawnRegion.bounds.max;
-    }
+    public SpawnRegion spawnRegion;
 
     public void SpawnChaser() {
         SpawnEnemy(chaserPrefab);
     }
 
     public void SpawnTank() {
-        SpawnEnemy(tankPrefab);
+        GameObject newTank = SpawnEnemy(tankPrefab);
+        newTank.GetComponent<Tank>().spawnRegion = spawnRegion;
     }
-    public void SpawnEnemy(GameObject enemyToSpawn) {
+    public GameObject SpawnEnemy(GameObject enemyToSpawn) {
         GameObject newEnemy = SpawnObject(enemyToSpawn);
         newEnemy.GetComponent<Enemy>().playerTransform = playerTransform;
         enemies.Add(newEnemy);
+        return newEnemy;
     }
 
     public void SpawnCoin() {
@@ -40,21 +32,9 @@ public class SpawnManager : MonoBehaviour
 
     private GameObject SpawnObject(GameObject objectToSpawn) {
         Quaternion spawnRotation = new();
-        Vector3 spawnPoint = GenerateSafeSpawnPoint();
+        Vector3 spawnPoint = spawnRegion.GenerateSafeSpawnPoint();
         GameObject newObject = Instantiate(objectToSpawn, spawnPoint, spawnRotation);
         return newObject;
-    }
-
-    private Vector3 GenerateSafeSpawnPoint() {
-        Vector3 spawnPoint = GenerateRandomSpawnPoint();
-        while (Physics.OverlapSphere(spawnPoint, minDistance, entityMask).Length > 0) {
-            spawnPoint = GenerateRandomSpawnPoint();
-        }
-        return spawnPoint;
-    }
-
-    private Vector3 GenerateRandomSpawnPoint() {
-        return new Vector3(Random.Range(boundsMin.x, boundsMax.x), spawnRegion.center.y + 0.1f, Random.Range(boundsMin.z, boundsMax.z));
     }
 
     public void EnableEnemyMovement(bool enable) {
