@@ -16,7 +16,7 @@ public class Tank : Enemy
     [Header("Movement")]
     Vector2 moveTimeMinMax = new Vector2(3,5);
     Vector2 moveDelayMinMax = new Vector2(1, 5);
-    float rotationSpeed = 2;
+    float rotationTime = 2;
 
     float nextShotTime;
     float nextMoveTime;
@@ -44,17 +44,28 @@ public class Tank : Enemy
 
         Vector3 pointToMoveTo = spawnRegion.GenerateSafeSpawnPoint();
         Vector3 correctedPoint = new Vector3(pointToMoveTo.x, transform.position.y, pointToMoveTo.z);
-        tankBottom.LookAt(correctedPoint);
+        Vector3 relativePos = correctedPoint - tankBottom.transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(relativePos);
+
+        // Rotate tank
+        float rotationSpeed = 1 / rotationTime;
+        Quaternion originalRotation = tankBottom.transform.rotation;
+        float percent = 0;
+        while (percent < 1) {
+            percent += Time.deltaTime * rotationSpeed;
+            tankBottom.transform.rotation = Quaternion.Slerp(originalRotation, targetRotation, percent);
+            yield return null;
+        }
+
         yield return new WaitForSeconds(1);
 
+        // Move tank
         float moveTime = Random.Range(moveTimeMinMax.x, moveTimeMinMax.y);
-
-        float jumpSpeed = 1 / moveTime;
+        float moveSpeed = 1 / moveTime;
         Vector3 originalPosition = transform.position;
-        float percent = 0;
-
+        percent = 0;
         while (percent < 1) {
-            percent += Time.deltaTime * jumpSpeed;
+            percent += Time.deltaTime * moveSpeed;
             transform.position = Vector3.Lerp(originalPosition, correctedPoint, percent);
             yield return null;
         }
