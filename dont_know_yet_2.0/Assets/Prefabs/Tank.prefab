@@ -380,8 +380,8 @@ MonoBehaviour:
   rb: {fileID: 4642058890321777796}
   damage: 1
   speedIncreaseMultiplier: 1.2
-  startSpeed: 20
-  speed: 0
+  startSpeed: 1
+  speed: 1
   bullet: {fileID: -7590842457198725485, guid: c559a4f6a9208e745a5059096a783d66, type: 3}
   projectileSpawn: {fileID: 8046535674236174390}
   tankTop: {fileID: 7241023104499012863}

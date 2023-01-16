@@ -7,6 +7,7 @@ public class Player : LivingEntity
     // Start is called before the first frame update
     public Rigidbody rb;
     public float force = 500f;
+    public float startForce = 500f;
     public LayerMask enemyMask;
     public LayerMask coinMask;
     public float flashTime = 0.5f;
@@ -26,7 +27,7 @@ public class Player : LivingEntity
     }
 
     void FixedUpdate() {
-        rb.AddForce(moveDirection * force * Time.deltaTime, ForceMode.VelocityChange);
+        rb.AddForce(moveDirection * force * speed * Time.deltaTime, ForceMode.VelocityChange);
     }
 
     public override void TakeDamage(int damage) {

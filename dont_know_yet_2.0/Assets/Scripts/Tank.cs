@@ -30,8 +30,8 @@ public class Tank : Enemy
     void Update() {
         if (Time.time > nextShotTime) {
             Projectile newProjectile = Instantiate(bullet, projectileSpawn.position, projectileSpawn.rotation) as Projectile;
-            newProjectile.SetSpeed(muzzleVelocity);
-            nextShotTime = Time.time + msBetweenShots/1000;
+            newProjectile.SetSpeed(muzzleVelocity * speed);
+            nextShotTime = Time.time + msBetweenShots/1000/speed;
         }
         if (Time.time > nextMoveTime && !isMoving) {
             StartCoroutine(MoveTank());
@@ -48,7 +48,7 @@ public class Tank : Enemy
         Quaternion targetRotation = Quaternion.LookRotation(relativePos);
 
         // Rotate tank
-        float rotationSpeed = 1 / rotationTime;
+        float rotationSpeed = (1 / rotationTime) / speed;
         Quaternion originalRotation = tankBottom.transform.rotation;
         float percent = 0;
         while (percent < 1) {
@@ -60,7 +60,7 @@ public class Tank : Enemy
         yield return new WaitForSeconds(1);
 
         // Move tank
-        float moveTime = Random.Range(moveTimeMinMax.x, moveTimeMinMax.y);
+        float moveTime = Random.Range(moveTimeMinMax.x, moveTimeMinMax.y) / speed;
         float moveSpeed = 1 / moveTime;
         Vector3 originalPosition = transform.position;
         percent = 0;
@@ -70,7 +70,7 @@ public class Tank : Enemy
             yield return null;
         }
 
-        nextMoveTime = Time.time + Random.Range(moveDelayMinMax.x, moveDelayMinMax.y);
+        nextMoveTime = Time.time + Random.Range(moveDelayMinMax.x, moveDelayMinMax.y)/speed;
         isMoving = false;
     }
 }

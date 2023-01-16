@@ -45,13 +45,13 @@ public class SpawnManager : MonoBehaviour
 
     public void IncreaseEnemySpeed() {
         for (int i = 0; i < enemies.Count; i++) {
-            enemies[i].GetComponent<Enemy>().IncreaseSpeed();
+            enemies[i].GetComponent<ISpeedable>().IncreaseSpeed();
         }
     }
 
     public void ResetEnemySpeed() {
         foreach (var enemy in enemies) {
-            enemy.GetComponent<Enemy>().ResetSpeed();
+            enemy.GetComponent<ISpeedable>().ResetSpeed();
         }
     }
 }

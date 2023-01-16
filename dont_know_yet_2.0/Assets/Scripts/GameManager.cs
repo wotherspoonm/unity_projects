@@ -51,13 +51,23 @@ public class GameManager : MonoBehaviour
     private void CheckDifficultyIncrease() {
         if (score % newEnemyInterval == 0) {
             spawnManager.SpawnChaser();
-            spawnManager.ResetEnemySpeed();
+            ResetSpeed();
             StartCoroutine(UpdateMessage("New Enemy!"));
         }
         else if (score % speedIncreaseInterval == 0) {
-            spawnManager.IncreaseEnemySpeed();
+            IncreaseSpeed();
             StartCoroutine(UpdateMessage("Speed Up!"));
         }
+    }
+
+    private void IncreaseSpeed() {
+        player.GetComponent<ISpeedable>().IncreaseSpeed();
+        spawnManager.IncreaseEnemySpeed();
+    }
+
+    private void ResetSpeed() {
+        player.GetComponent<ISpeedable>().ResetSpeed();
+        spawnManager.ResetEnemySpeed();
     }
 
     private void EnableMovement(bool enable) {

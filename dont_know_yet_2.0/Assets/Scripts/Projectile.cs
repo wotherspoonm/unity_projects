@@ -7,7 +7,8 @@ public class Projectile : Enemy {
     float lifetime = 5;
     float skinWidth = 0.1f; // To compenstate for the velocity of the enemies
 
-    void Start() {
+    protected override void Start() {
+        base.Start();
         Destroy(gameObject, lifetime);
 
         Collider[] initialCollisions = Physics.OverlapSphere(transform.position, 0.1f, collisionMask);
@@ -25,9 +26,16 @@ public class Projectile : Enemy {
         transform.Translate(Vector3.forward * moveDistance);
     }
 
-    public override void OnCollisionEnter(Collision collision) {
-        base.OnCollisionEnter(collision);
+    public override bool OnCollisionEnter(Collision collision) {
         Destroy(gameObject);
+        if (base.OnCollisionEnter(collision)) {
+            Vector3 bulletDirection = transform.forward;
+            Vector3 forceVector = new Vector3(bulletDirection.x, 0, bulletDirection.z).normalized;
+            float force = 50;
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(bulletDirection * force, ForceMode.VelocityChange);
+            return true;
+        }
+        return false;
     }
 
     void CheckCollisions(float moveDistance) {

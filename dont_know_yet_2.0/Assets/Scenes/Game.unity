@@ -689,8 +689,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 20, z: 1}
+  m_Center: {x: 0, y: 9, z: 0}
 --- !u!23 &477302033
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1163,8 +1163,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 20, z: 1}
+  m_Center: {x: 0, y: 9, z: 0}
 --- !u!23 &1119328097
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1260,8 +1260,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 20, z: 1}
+  m_Center: {x: 0, y: 9, z: 0}
 --- !u!23 &1138939894
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1433,8 +1433,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 20, z: 1}
+  m_Center: {x: 0, y: 9, z: 0}
 --- !u!23 &1301180121
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1987,8 +1987,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   dead: 0
+  speedIncreaseMultiplier: 1.2
+  startSpeed: 1
+  speed: 1
   rb: {fileID: 1791109780}
   force: 50
+  startForce: 50
   enemyMask:
     serializedVersion: 2
     m_Bits: 256
@@ -1996,7 +2000,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   flashTime: 0.5
-  numberOfFlashes: 3
+  numberOfFlashes: 4
 --- !u!1 &1811121349
 GameObject:
   m_ObjectHideFlags: 0
