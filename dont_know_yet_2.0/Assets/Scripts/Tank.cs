@@ -30,7 +30,7 @@ public class Tank : Enemy
     void Update() {
         if (Time.time > nextShotTime) {
             Projectile newProjectile = Instantiate(bullet, projectileSpawn.position, projectileSpawn.rotation) as Projectile;
-            newProjectile.SetSpeed(muzzleVelocity * speed);
+            newProjectile.SetSpeed(muzzleVelocity);
             nextShotTime = Time.time + msBetweenShots/1000/speed;
         }
         if (Time.time > nextMoveTime && !isMoving) {

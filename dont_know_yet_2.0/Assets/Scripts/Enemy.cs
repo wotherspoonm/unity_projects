@@ -13,6 +13,7 @@ public class Enemy : LivingEntity
 
     private void Awake() {
         playerMask = LayerMask.GetMask("Player");
+        ResetSpeed();
     }
 
     public virtual bool OnCollisionEnter(Collision collision) {

@@ -375,13 +375,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b26b17a2a286264db12941cd1cb947b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 0
+  dead: 0
+  speedIncreaseMultiplier: 1.2
+  startSpeed: 1
+  speed: 1.2
   playerTransform: {fileID: 0}
   playerDirection: {x: 0, y: 0, z: 0}
   rb: {fileID: 4642058890321777796}
   damage: 1
-  speedIncreaseMultiplier: 1.2
-  startSpeed: 1
-  speed: 1
   bullet: {fileID: -7590842457198725485, guid: c559a4f6a9208e745a5059096a783d66, type: 3}
   projectileSpawn: {fileID: 8046535674236174390}
   tankTop: {fileID: 7241023104499012863}

@@ -10,11 +10,14 @@ public class GameManager : MonoBehaviour
     public Player player;
     public SpawnManager spawnManager;
     public Text scoreText;
+    public Text highScoreText;
     public Text updateText;
     public int speedIncreaseInterval = 5;
     public int newEnemyInterval = 20;
+    public bool devMode;
 
     private int score = 0;
+    private int highScore = 0;
 
     void Awake() {
         player = FindObjectOfType<Player>();
@@ -24,8 +27,23 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        UpdateScore();
         spawnManager.SpawnTank();
         spawnManager.SpawnCoin();
+    }
+
+    void Update() {
+        if (devMode) {
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                score++;
+                scoreText.text = "Score: " + score;
+                CheckDifficultyIncrease();
+            }
+            if (Input.GetKeyDown(KeyCode.Backspace)) {
+                spawnManager.SpawnChaser();
+            }
+        }
     }
 
     void OnDeath() {
@@ -39,12 +57,13 @@ public class GameManager : MonoBehaviour
     public void CollectCoin() {
         score++;
         spawnManager.SpawnCoin();
-        scoreText.text = "Score: " + score;
+        UpdateScore();
         CheckDifficultyIncrease();
     }
 
     public void EndGame() {
         // Disable movement
+        PlayerPrefs.SetInt("HighScore", highScore);
         EnableMovement(false);
     }
 
@@ -73,6 +92,14 @@ public class GameManager : MonoBehaviour
     private void EnableMovement(bool enable) {
         player.enabled = enable;
         spawnManager.EnableEnemyMovement(enable);
+    }
+
+    private void UpdateScore() {
+        scoreText.text = "Score: " + score;
+        if (score > highScore) {
+            highScore = score;
+        }
+        highScoreText.text = "High Score: " + highScore;
     }
 
     IEnumerator UpdateMessage(string text) {

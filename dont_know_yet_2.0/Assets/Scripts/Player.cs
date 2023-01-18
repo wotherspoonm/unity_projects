@@ -12,6 +12,7 @@ public class Player : LivingEntity
     public LayerMask coinMask;
     public float flashTime = 0.5f;
     public int numberOfFlashes = 3;
+    public bool invincible;
 
     Vector3 moveInput;
     Vector3 moveDirection;
@@ -31,7 +32,7 @@ public class Player : LivingEntity
     }
 
     public override void TakeDamage(int damage) {
-        if (!isInvincible && !dead) {
+        if (!isInvincible && !dead && !invincible) {
             StartCoroutine(AnimateInvincibility());
             base.TakeDamage(damage);
         }
