@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         if (devMode) {
             if (Input.GetKeyDown(KeyCode.Return)) {
                 score++;
-                scoreText.text = "Score: " + score;
+                UpdateScore();
                 CheckDifficultyIncrease();
             }
             if (Input.GetKeyDown(KeyCode.Backspace)) {

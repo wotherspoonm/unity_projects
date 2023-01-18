@@ -32,7 +32,7 @@ public class SpawnManager : MonoBehaviour
 
     private GameObject SpawnObject(GameObject objectToSpawn) {
         Quaternion spawnRotation = new();
-        Vector3 spawnPoint = spawnRegion.GenerateSafeSpawnPoint();
+        Vector3 spawnPoint = spawnRegion.GenerateSafeSpawnPoint() + Vector3.up;
         GameObject newObject = Instantiate(objectToSpawn, spawnPoint, spawnRotation);
         return newObject;
     }

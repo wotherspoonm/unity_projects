@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaserPrefab: {fileID: 5146303635357228412, guid: 63cae132ab7e86848a96ff15ecc09e52, type: 3}
   tankPrefab: {fileID: 6232732306268790972, guid: 9828a04a0e3dc7b47808f0140fc23629, type: 3}
-  coinPrefab: {fileID: 2768145642400051388, guid: 301dfb44ac40e974383fe16331493794, type: 3}
+  coinPrefab: {fileID: 5079087949021270842, guid: 88450a897076e0143bd8c1ae28a03515, type: 3}
   playerTransform: {fileID: 1791109785}
   enemies: []
   spawnRegion: {fileID: 262261157}
