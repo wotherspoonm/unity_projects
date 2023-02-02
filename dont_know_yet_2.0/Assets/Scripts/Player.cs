@@ -20,6 +20,10 @@ public class Player : LivingEntity
 
     public event System.Action OnCollectCoin;
 
+    protected override void Start() {
+        force = startForce;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +33,7 @@ public class Player : LivingEntity
 
     void FixedUpdate() {
         rb.AddForce(moveDirection * force * speed * Time.deltaTime, ForceMode.VelocityChange);
+        // rb.MovePosition(rb.position + moveDirection * force * speed * Time.deltaTime);
     }
 
     public override void TakeDamage(int damage) {
@@ -43,7 +48,7 @@ public class Player : LivingEntity
         int collisionLayerMask = 1 << collisionLayer;
         if ((coinMask.value & collisionLayerMask) != 0) {
             OnCollectCoin();
-            Destroy(other.gameObject);
+            Destroy(other.transform.parent.gameObject);
         }
     }
 

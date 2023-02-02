@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         UpdateScore();
         spawnManager.SpawnTank();
+        spawnManager.SpawnTank();
+        spawnManager.SpawnTank();
         spawnManager.SpawnCoin();
     }
 
