@@ -10,11 +10,6 @@ public class Projectile : Enemy {
     protected override void Start() {
         base.Start();
         Destroy(gameObject, lifetime);
-
-        Collider[] initialCollisions = Physics.OverlapSphere(transform.position, 0.1f, collisionMask);
-        if (initialCollisions.Length > 0) {
-            OnHitObject(initialCollisions[0], transform.position);
-        }
     }
 
     public void SetSpeed(float newSpeed) {
@@ -22,7 +17,6 @@ public class Projectile : Enemy {
     }
     void Update() {
         float moveDistance = speed * Time.deltaTime;
-        /*CheckCollisions(moveDistance);*/
         transform.Translate(Vector3.forward * moveDistance);
     }
 
@@ -36,21 +30,5 @@ public class Projectile : Enemy {
             return true;
         }
         return false;
-    }
-
-    void CheckCollisions(float moveDistance) {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, moveDistance + skinWidth, collisionMask, QueryTriggerInteraction.Collide)) {
-            OnHitObject(hit.collider, hit.point);
-        }
-    }
-
-    void OnHitObject(Collider c, Vector3 hitPoint) {
-        IDamageable damageableObject = c.GetComponent<IDamageable>();
-        if (damageableObject != null) {
-            damageableObject.TakeDamage(damage);
-        }
-        GameObject.Destroy(gameObject);
     }
 }
